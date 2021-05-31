@@ -5,6 +5,10 @@ export default StyleSheet.create({
     wrapper:{
         padding:20
     }
+    ,
+    scroll:{
+        backgroundColor:'white'
+    }
 
 
 
