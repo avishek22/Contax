@@ -8,17 +8,22 @@ import { useNavigation } from '@react-navigation/native';
 import { LOGIN } from '../../constants/routeNames'
 import { onChange } from 'react-native-reanimated'
 import axiosInstance from '../../helpers/axiosInterceptor'
+import register from '../../context/actions/auth/register'
+import { useContext } from 'react'
+import { GlobalContext } from '../../context/Provider'
 
 
 const Signup=()=>{
     const[value,setValue]=useState('')
     const[form,setForm]=useState({})
     const[errors,setErrors]=useState({})
-    useEffect(()=>{
-        axiosInstance.get("/contacts").catch((err)=>{
-            console.log('err',err)
-        })
-    },[])
+    const{authDispatch,authState:{error,loading,data}}=useContext(GlobalContext)
+    
+    // useEffect(()=>{
+    //     axiosInstance.get("/contacts").catch((err)=>{
+    //         console.log('err',err)
+    //     })
+    // },[])
     const onChange=({name,value})=>{
         setForm({...form,[name]:value})
         if(value!==''){
@@ -68,6 +73,17 @@ const Signup=()=>{
                 return {...prev,email:"Please add an Email"}
             })
         }
+        console.log('1111',11110)
+
+        if (
+            Object.values(form).length === 5 &&
+            Object.values(form).every((item) => item.trim().length > 0) &&
+            Object.values(errors).every((item) => !item)
+          ) {
+            register(form)(authDispatch)((response) => {
+              navigate(LOGIN, {data: response});
+            });
+          }
 
     }
     const {navigate}=useNavigation()
@@ -85,7 +101,7 @@ const Signup=()=>{
             onChange({name:"userName",value})
         }}
         iconPosition="right"
-        error={errors.userName}
+        error={errors.userName || error?.username?.[0]}
       
       />
 
@@ -96,7 +112,7 @@ const Signup=()=>{
             onChange({name:"firstName",value})
         }}
         iconPosition="right"
-        error={errors.firstName}
+        error={errors.firstName ||error?.first_name?.[0]}
       
 
       />
@@ -108,7 +124,7 @@ const Signup=()=>{
             onChange({name:'lastName',value})
         }}
         iconPosition="right"
-        error={errors.lastName}
+        error={errors.lastName ||error?.last_name?.[0]}
       
 
       />
@@ -119,7 +135,7 @@ const Signup=()=>{
             onChange({name:"email",value})
         }}
         iconPosition="right"
-        error={errors.email}
+        error={errors.email ||error?.email?.[0]}
       
 
       />
@@ -132,12 +148,12 @@ const Signup=()=>{
             onChange({name:'password',value})
         }}
         iconPosition="right"
-        error={errors.password}
+        error={errors.password ||error?.password?.[0]}
         secureTextEntry={true}
        
       />
       
-    <CustomButton secondary title="Submit" 
+    <CustomButton secondary title="Submit" loading={loading} disabled={loading}
     onPress={onSubmit}></CustomButton></View>
      <View style={styles.signupSection}>
       <Text style={styles.infoText}>Already have an account?</Text>
