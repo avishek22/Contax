@@ -6,6 +6,7 @@ import CustomButton from '../../components/common/CustomButton'
 import Input from '../../components/common/Input'
 import { SIGNUP } from '../../constants/routeNames'
 import { useNavigation } from '@react-navigation/native';
+import Message from '../../components/common/message'
 
 
 const Login=()=>{
@@ -17,6 +18,9 @@ const Login=()=>{
           <View>
           <Text style={styles.title}>Welcome to Contax</Text>
           <Text style={styles.subtitle}>Please Login</Text>
+          <Message retry retryFn={()=>{
+            console.log("click")
+          }} message="invalid creds" primary onDismiss={()=>{}}></Message>
           <View style={styles.form}>
           <Input
         placeholder="Enter Username"
