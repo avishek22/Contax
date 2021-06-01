@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {View,Text,TextInput,Image, TouchableOpacity} from 'react-native'
 import Container from '../../components/common/Container'
 import styles from './styles'
@@ -7,12 +7,18 @@ import Input from '../../components/common/Input'
 import { useNavigation } from '@react-navigation/native';
 import { LOGIN } from '../../constants/routeNames'
 import { onChange } from 'react-native-reanimated'
+import axiosInstance from '../../helpers/axiosInterceptor'
 
 
 const Signup=()=>{
     const[value,setValue]=useState('')
     const[form,setForm]=useState({})
     const[errors,setErrors]=useState({})
+    useEffect(()=>{
+        axiosInstance.get("/contacts").catch((err)=>{
+            console.log('err',err)
+        })
+    },[])
     const onChange=({name,value})=>{
         setForm({...form,[name]:value})
         if(value!==''){
