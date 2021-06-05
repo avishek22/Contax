@@ -17,6 +17,7 @@ const Signup=()=>{
     const[value,setValue]=useState('')
     const[form,setForm]=useState({})
     const[errors,setErrors]=useState({})
+    const[isSecureEntry,setIsSecureEntry]=useState(true)
     const{authDispatch,authState:{error,loading,data}}=useContext(GlobalContext)
     
     // useEffect(()=>{
@@ -141,7 +142,12 @@ const Signup=()=>{
       />
       
       <Input
-        icon={<Text>SHOW</Text>}
+         icon={
+        <TouchableOpacity onPress={()=>{
+          setIsSecureEntry((prev)=>!prev)
+        }}>
+          <Text>{isSecureEntry?"SHOW":"HIDE"}</Text>
+        </TouchableOpacity>}
         placeholder="Enter password"
         label='Password'    
         onChangeText={(value)=>{
@@ -149,7 +155,7 @@ const Signup=()=>{
         }}
         iconPosition="right"
         error={errors.password ||error?.password?.[0]}
-        secureTextEntry={true}
+        secureTextEntry={isSecureEntry}
        
       />
       

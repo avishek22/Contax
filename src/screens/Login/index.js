@@ -14,7 +14,7 @@ import loginUser from '../../context/actions/auth/loginUser'
 const Login=()=>{
     const [form,setForm]=useState({})
     const {navigate}=useNavigation()
-    
+    const[isSecureEntry,setIsSecureEntry]=useState(true)
     const{authDispatch,authState:{error,loading}}=useContext(GlobalContext)
     const onSubmit=()=>{
       if(form.userName && form.password){
@@ -52,7 +52,12 @@ const Login=()=>{
       />
       
       <Input
-        icon={<Text>SHOW</Text>}
+        icon={
+        <TouchableOpacity onPress={()=>{
+          setIsSecureEntry((prev)=>!prev)
+        }}>
+          <Text>{isSecureEntry?"SHOW":"HIDE"}</Text>
+        </TouchableOpacity>}
         placeholder="Enter password"
         label='Password'    
        
@@ -62,7 +67,7 @@ const Login=()=>{
         onChangeText={(value)=>{
           onChange({name:'password',value})
         }}
-        secureTextEntry={true}
+        secureTextEntry={isSecureEntry}
        
       />
       
