@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {ActivityIndicator, Text} from 'react-native'
 import { AppRegistry } from "react-native";
 import AuthNavigator from './AuthNavigator';
-import DrawerNavigator from './DrawerNavigator copy';
+import DrawerNavigator from './DrawerNavigator';
 import HomeNavigator from './HomeNavigator';
 import {GlobalContext} from '../context/Provider'
 import { useEffect } from 'react/cjs/react.development';
