@@ -5,7 +5,7 @@ import styles from './styles'
 import CustomButton from '../../components/common/CustomButton'
 import Input from '../../components/common/Input'
 import { SIGNUP } from '../../constants/routeNames'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import Message from '../../components/common/message'
 import { GlobalContext } from '../../context/Provider'
 import loginUser from '../../context/actions/auth/loginUser'
@@ -14,8 +14,18 @@ import loginUser from '../../context/actions/auth/loginUser'
 const Login=()=>{
     const [form,setForm]=useState({})
     const {navigate}=useNavigation()
+    const{params}=useRoute()
     const[isSecureEntry,setIsSecureEntry]=useState(true)
     const{authDispatch,authState:{error,loading}}=useContext(GlobalContext)
+    const[justSignedUp,setJustSignedUp]=useState(false)
+    React.useEffect(() => {
+      if (params?.data) {
+        setJustSignedUp(true);
+        console.log('param',params)
+        setForm({...form, userName: params.data.username});
+        console.log(form.userName)
+      }
+    }, [params]);
     const onSubmit=()=>{
       if(form.userName && form.password){
         console.log(form)
@@ -24,6 +34,7 @@ const Login=()=>{
     }
     const onChange=({name,value})=>{
       setForm({...form,[name]:value})
+      setJustSignedUp(false)
     }
     return (
         <Container>
@@ -39,11 +50,15 @@ const Login=()=>{
           {error?.error && <Message retry retryFn={()=>{
             console.log("click")
           }} message={error?.error} danger onDismiss={()=>{}}></Message>}
+          {justSignedUp&&<Message retry retryFn={()=>{
+            console.log("click")
+          }} message="Account created succesfully." success onDismiss={()=>{}}></Message>}
           <Input
         placeholder="Enter Username"
         label='Username'    
         iconPosition="right"
         error={error?.username?.[0]}
+        value={form.userName||null}
         onChangeText={(value)=>{
           onChange({name:'userName',value})
         }}
