@@ -16,7 +16,7 @@ const AppNavContainer = () => {
   } = useContext(GlobalContext);
 
   const [isAuthenticated, setIsAuthenticated] = React.useState(isLoggedIn);
-  const [authLoaded, setAuthLoaded] = React.useState(false);
+  const [authLoaded, setAuthLoaded] = React.useState(isLoggedIn);
 
   const getUser = async () => {
     try {
@@ -37,9 +37,10 @@ const AppNavContainer = () => {
   };
   useEffect(() => {
     getUser();
-  }, []);
+  }, [isLoggedIn]);
 
-  console.log(`is`, authLoaded)
+  console.log(`is authloaded`, authLoaded)
+  console.log('logged in',isLoggedIn)
 
   return (
     

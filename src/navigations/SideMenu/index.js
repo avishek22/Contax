@@ -3,21 +3,30 @@ import React from 'react'
 import { View, Text, SafeAreaView ,Image, Alert} from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Container from '../../components/common/Container'
+import { LOGOUT_USER } from '../../constants/actionTypes'
 import { SETTINGS } from '../../constants/routeNames'
+import logoutUser from '../../context/actions/auth/logoutUser'
 import styles from './styles'
 
-const SideMenu = ({navigation}) => {
-
-    const handleLogout=()=>{
-        navigation.toggleDrawer()
-        Alert.alert("Logout!","Are you sure you want to logout?",[{
-            text:"Cancel",
-            onPress:()=>{}
-        },{
-            text:"Confirm",
-            onPress:()=>{}
-        }])
-    }
+const SideMenu = ({navigation,authDispatch}) => {
+    console.log(authDispatch)
+        const handleLogout = () => {
+        navigation.toggleDrawer();
+        Alert.alert('Logout!', 'Are you sure you want to logout?', [
+          {
+            text: 'Cancel',
+            onPress: () => {},
+          },
+    
+          {
+            text: 'OK',
+            onPress: () => {
+                console.log('click')
+              logoutUser()(authDispatch);
+            },
+          },
+        ]);
+      };
     const menuItems=[
         {icon:<Text>T</Text>,name:'Settings',onPress:()=>{
             navigation.navigate(SETTINGS)
