@@ -3,12 +3,13 @@ import React from 'react'
 import {View,Text} from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useEffect } from 'react/cjs/react.development'
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 const Contacts=()=>{
     const {setOptions,toggleDrawer}=useNavigation()
     useEffect(()=>{
         setOptions({headerLeft:()=><TouchableOpacity onPress={()=>{
             toggleDrawer()
-        }}><Text style={{padding:10}}>NAV</Text></TouchableOpacity>})
+        }}><MaterialIcon name="menu" size={21} style={{padding:10}} ></MaterialIcon></TouchableOpacity>})
     })
     return (
         <View>
