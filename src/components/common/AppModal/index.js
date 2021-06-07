@@ -6,14 +6,15 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 const AppModal = ({modalVisible,setModalVisible,modalBody,modalFooter,title}) => {
     return (
         <Modal visible={modalVisible} transparent>
-        <TouchableOpacity onPress={()=>{
-            setModalVisible(false)
-        }} style={styles.wrapper}>
+        <TouchableOpacity  style={styles.wrapper}>
             <View style={styles.modalView}>
                 <ScrollView>
                 <View>
                 <View style={styles.header}>
-                <MaterialIcon name="close" size={21} style={{padding:10}} ></MaterialIcon>
+                <TouchableOpacity onPress={()=>{
+            setModalVisible(false)
+        }}><MaterialIcon name="close" size={21} style={{padding:10}} ></MaterialIcon></TouchableOpacity>
+                
                 <Text style={styles.title}>{title||'Contax'}</Text>
                 <View></View>
                 </View>
