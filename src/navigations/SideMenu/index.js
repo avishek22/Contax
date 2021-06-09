@@ -4,10 +4,11 @@ import { View, Text, SafeAreaView ,Image, Alert} from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Container from '../../components/common/Container'
 import { LOGOUT_USER } from '../../constants/actionTypes'
-import { SETTINGS } from '../../constants/routeNames'
+import { CREATE_CONTACT, SETTINGS } from '../../constants/routeNames'
 import logoutUser from '../../context/actions/auth/logoutUser'
 import styles from './styles'
 import MaterialIcon from 'react-native-vector-icons/Ionicons'
+import MaterialIcon2 from 'react-native-vector-icons/AntDesign'
 
 import MaterialIcon1 from 'react-native-vector-icons/MaterialIcons'
 const SideMenu = ({navigation,authDispatch}) => {
@@ -30,9 +31,13 @@ const SideMenu = ({navigation,authDispatch}) => {
         ]);
       };
     const menuItems=[
-        {icon:<MaterialIcon name="settings" size={18}></MaterialIcon>,name:'Settings',onPress:()=>{
-            navigation.navigate(SETTINGS)
-        }},
+        
+        {icon:<MaterialIcon2 name="pluscircle" size={18}></MaterialIcon2>,name:'New',onPress:()=>{
+          navigation.navigate(CREATE_CONTACT)
+      }},
+      {icon:<MaterialIcon name="settings" size={18}></MaterialIcon>,name:'Settings',onPress:()=>{
+        navigation.navigate(SETTINGS)
+    }},
         {icon:<MaterialIcon1 name="logout" size={18}></MaterialIcon1>,name:'Logout',onPress:handleLogout},
     ]
     return (<SafeAreaView>

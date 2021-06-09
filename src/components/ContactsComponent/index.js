@@ -1,4 +1,5 @@
 import React from 'react'
+import {useNavigation} from '@react-navigation/native';
 import { View, Text,FlatList, ActivityIndicator,Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import colors from '../../assets/themes/colors'
@@ -8,6 +9,7 @@ import Message from '../common/message'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import Icon from '../common/Icon/index'
 import styles from '../ContactsComponent/styles'
+import CREATE_CONTACT from '../../constants/routeNames'
 
 const ListEmptyComponent=()=>{
     return <View style={{padding:100}}>
@@ -40,7 +42,9 @@ const renderItem=({item})=>{
 }
 
 const ContactsComponent = ({modalVisible,setModalVisible,data,loading}) => {
+    const{navigate}=useNavigation()
     return (
+        <>
         <View style={{backgroundColor:colors.white}}>
             <AppModal setModalVisible={setModalVisible} modalVisible={modalVisible}
             title="My Profile" modalBody={<View><Text>Hello from modal</Text></View>}></AppModal>
@@ -51,7 +55,18 @@ const ContactsComponent = ({modalVisible,setModalVisible,data,loading}) => {
             {!loading &&(<View style={{paddingVertical:20}}><FlatList renderItem={renderItem} keyExtractor={(item)=>String(item.id)} data={data} ListEmptyComponent={ListEmptyComponent} ListFooterComponent={
                 <View style={{height:150}}></View>
             }></FlatList></View>)}
+            
         </View>
+        <TouchableOpacity
+        style={styles.floatingActionButton}
+         onPress={() => {
+           navigate(CREATE_CONTACT);
+         }}
+        >
+        <Icon name="plus" size={21} color={colors.white} />
+      </TouchableOpacity>
+        
+        </>
     )
 }
 
