@@ -17,24 +17,31 @@ const ListEmptyComponent=()=>{
 
 const renderItem=({item})=>{
     console.log('item',item)
-    const{contact_picture,first_name,last_name,phone_number,id}=item
+    const{contact_picture,first_name,last_name,phone_number,country_code}=item
     return <TouchableOpacity style={styles.itemContainer}>
         <View style={styles.item}>
             {contact_picture?<Image style={{width:45,height:45,borderRadius:100}} source={{uri:contact_picture}}></Image>:
-            <View style={{width:45,height:45,backgroundColor:colors.grey}}></View>}
+            <View style={{width:45,height:45,backgroundColor:colors.grey,flexDirection:'row',justifyContent:'center',alignItems:'center',borderRadius:100}}>
+                <Text style={[styles.name,{color:colors.white}]}>{first_name[0]}</Text>
+                <Text style={[styles.name,{color:colors.white}]}>{last_name[0]}</Text>
+            </View>}
+            <View style={{paddingLeft:20}}>
             <View style={{flexDirection:'row'}}>
-                <TouchableOpacity onPress={()=>{console.log('id',id)}}><Text>{first_name}</Text></TouchableOpacity>
-                <Text>{last_name}</Text>
+                <Text style={styles.name}>{first_name}</Text>
+                <Text> </Text>
+                <Text style={styles.name}>{last_name}</Text></View>
+                <Text style={styles.phoneNumber}>{`${country_code} ${phone_number}`}</Text>
             </View>
-            <Text>{phone_number}</Text>
+            
         </View>
-        <Icon name="right" type="ant"></Icon>
+        <Icon name="right" type="ant" size={17} color={colors.grey} style={styles.icon}></Icon>
+        
     </TouchableOpacity>
 }
 
 const ContactsComponent = ({modalVisible,setModalVisible,data,loading}) => {
     return (
-        <View>
+        <View style={{backgroundColor:colors.white}}>
             <AppModal setModalVisible={setModalVisible} modalVisible={modalVisible}
             title="My Profile" modalBody={<View><Text>Hello from modal</Text></View>}></AppModal>
             {/* <CustomButton title="Open modal" secondary onPress={()=>{
