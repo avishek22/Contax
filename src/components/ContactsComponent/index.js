@@ -17,6 +17,7 @@ const ListEmptyComponent=()=>{
     </View>
 }
 
+
 const renderItem=({item})=>{
     console.log('item',item)
     const{contact_picture,first_name,last_name,phone_number,country_code}=item
@@ -38,6 +39,21 @@ const renderItem=({item})=>{
         </View>
         <Icon name="right" type="ant" size={17} color={colors.grey} style={styles.icon}></Icon>
         
+        {/* <TouchableOpacity
+        style={{backgroundColor:'red',width:55,
+       height:55,
+       //position:'absolute',
+       bottom:45,
+       right:10,
+       borderRadius:100,
+       justifyContent:'center',
+       alignItems:'center'}}
+         onPress={() => {
+           navigate(CREATE_CONTACT);
+         }}
+        >
+        <Icon name="plus" size={21} color={colors.grey} />
+      </TouchableOpacity> */}
     </TouchableOpacity>
 }
 
@@ -57,14 +73,21 @@ const ContactsComponent = ({modalVisible,setModalVisible,data,loading}) => {
             }></FlatList></View>)}
             
         </View>
-        <TouchableOpacity
-        style={styles.floatingActionButton}
+        {/* <TouchableOpacity
+        style={{backgroundColor:'red',width:55,
+       height:55,
+       position:'absolute',
+       bottom:45,
+       right:10,
+       borderRadius:100,
+       justifyContent:'center',
+       alignItems:'center'}}
          onPress={() => {
            navigate(CREATE_CONTACT);
          }}
         >
-        <Icon name="plus" size={21} color={colors.white} />
-      </TouchableOpacity>
+        <Icon name="plus" size={21} color={colors.grey} />
+      </TouchableOpacity> */}
         
         </>
     )
