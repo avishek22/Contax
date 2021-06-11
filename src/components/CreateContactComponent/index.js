@@ -1,13 +1,14 @@
 import React from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image,Switch } from 'react-native'
 import Container from '../common/Container'
 import CustomButton from '../common/CustomButton'
 import Input from '../common/Input'
 import styles from './styles'
 import CountryPicker from 'react-native-country-picker-modal'
 import { DEFAULT_IMAGE_URI } from '../../constants/general'
+import { isEnabled } from 'react-native/Libraries/Performance/Systrace'
 
-const CreateContactComponent = ({onChangeText,form,onSubmit,setForm,error,loading}) => {
+const CreateContactComponent = ({onChangeText,form,onSubmit,setForm,error,loading,toggleValueChange}) => {
     return (
         <View style={styles.container}>
             <Container>
@@ -50,7 +51,15 @@ const CreateContactComponent = ({onChangeText,form,onSubmit,setForm,error,loadin
                 }}
                 style={{paddingLeft:10}}
                  label="Phone number" placeholder=" Enter Phone Number"></Input>
-                
+                <View style={{flexDirection:'row',justifyContent:'space-between',paddingVertical:10,alignItems:'center'}}>
+                    <Text style={{fontSize:17}}>Add to favorites</Text>
+                    <Switch
+                    trackColor={{false:'#767577',true:'#81b0ff'}}
+                    thumbColor={form.isFavorite?"#f5dd4b":"#f4f3f4"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={toggleValueChange}
+                    value={form.isFavorite}></Switch>
+                </View>
                 <CustomButton loading={loading} disabled={loading} onPress={onSubmit} primary title="Submit"></CustomButton>
             </Container>
         </View>

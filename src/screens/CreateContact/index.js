@@ -26,8 +26,11 @@ const CreateContact=()=>{
             navigate(CONTACT_LIST)
         })
     }
+    const toggleValueChange=()=>{
+        setForm({...form,isFavorite: !form.isFavorite})
+    }
     return (
-        <CreateContactComponent onChangeText={onChangeText} form={form} onSubmit={onSubmit} setForm={setForm} loading={loading} error={error}></CreateContactComponent>
+        <CreateContactComponent onChangeText={onChangeText} toggleValueChange={toggleValueChange} form={form} onSubmit={onSubmit} setForm={setForm} loading={loading} error={error}></CreateContactComponent>
     )
 }
 
