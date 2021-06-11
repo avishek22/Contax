@@ -7,8 +7,10 @@ import styles from './styles'
 import CountryPicker from 'react-native-country-picker-modal'
 import { DEFAULT_IMAGE_URI } from '../../constants/general'
 import { isEnabled } from 'react-native/Libraries/Performance/Systrace'
+import ImagePicker from '../common/ImagePicker'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
-const CreateContactComponent = ({onChangeText,form,onSubmit,setForm,error,loading,toggleValueChange}) => {
+const CreateContactComponent = ({onChangeText,form,onSubmit,setForm,error,loading,toggleValueChange,sheetRef,openSheet,closeSheet}) => {
     return (
         <View style={styles.container}>
             <Container>
@@ -18,7 +20,7 @@ const CreateContactComponent = ({onChangeText,form,onSubmit,setForm,error,loadin
           source={{uri:  'https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'}}
           style={styles.imageView}
         />
-        <Text style={styles.chooseText}>Choose Image</Text>
+       <TouchableOpacity onPress={openSheet}><Text style={styles.chooseText}>Choose Image</Text></TouchableOpacity> 
                 <Input label="First name" placeholder=" Enter First Name"
                 error={error?.first_name?.[0]}
                 onChangeText={(value)=>{
@@ -62,6 +64,7 @@ const CreateContactComponent = ({onChangeText,form,onSubmit,setForm,error,loadin
                 </View>
                 <CustomButton loading={loading} disabled={loading} onPress={onSubmit} primary title="Submit"></CustomButton>
             </Container>
+            <ImagePicker ref={sheetRef}></ImagePicker>
         </View>
     )
 }
