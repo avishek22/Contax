@@ -10,14 +10,14 @@ import { isEnabled } from 'react-native/Libraries/Performance/Systrace'
 import ImagePicker from '../common/ImagePicker'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
-const CreateContactComponent = ({onChangeText,form,onSubmit,setForm,error,loading,toggleValueChange,sheetRef,openSheet,closeSheet}) => {
+const CreateContactComponent = ({localFile,onFileSelected,onChangeText,form,onSubmit,setForm,error,loading,toggleValueChange,sheetRef,openSheet,closeSheet}) => {
     return (
         <View style={styles.container}>
             <Container>
             <Image
           width={120}
           height={10}
-          source={{uri:  'https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'}}
+          source={{uri: localFile?.path|| 'https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'}}
           style={styles.imageView}
         />
        <TouchableOpacity onPress={openSheet}><Text style={styles.chooseText}>Choose Image</Text></TouchableOpacity> 
@@ -64,7 +64,7 @@ const CreateContactComponent = ({onChangeText,form,onSubmit,setForm,error,loadin
                 </View>
                 <CustomButton loading={loading} disabled={loading} onPress={onSubmit} primary title="Submit"></CustomButton>
             </Container>
-            <ImagePicker ref={sheetRef}></ImagePicker>
+            <ImagePicker ref={sheetRef} onFileSelected={onFileSelected}></ImagePicker>
         </View>
     )
 }

@@ -51,6 +51,10 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+	<string>Contactss app requires acess to your camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Contactss app requires acess to your gallery</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>

@@ -12,7 +12,8 @@ export default StyleSheet.create({
     itemContainer:{
         flexDirection:'row',
         justifyContent:'space-between',
-        paddingRight:20
+        paddingRight:20,
+        backgroundColor:'white'
     },
     name:{
         fontSize:17

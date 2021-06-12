@@ -1,15 +1,41 @@
 import React from 'react'
-import { View, Text } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, Text,TouchableOpacity } from 'react-native'
 import RBSheet from "react-native-raw-bottom-sheet";
 import colors from '../../../assets/themes/colors';
 import Icon from "../Icon/index"
 import styles from './styles';
+import ImagePickerCropper from 'react-native-image-crop-picker';
 
-const ImagePicker = React.forwardRef(({},ref) => {
+const ImagePicker = React.forwardRef(({onFileSelected},ref) => {
     const options=[
-        {name:"Take from camera",icon:<Icon name="camera" color={colors.grey} size={21}></Icon>, onPress:()=>{}},
-        {name:"Choose from gallery",icon:<Icon name="image" color={colors.grey} size={21}></Icon>, onPress:()=>{}},
+        {name:"Take from camera",icon:<Icon name="camera" color={colors.grey} size={41}></Icon>, onPress:()=>{
+
+            ImagePickerCropper.openCamera({
+                width:300,
+                height:300,
+                cropping:true,
+                freeStyleCropEnabled:true
+            }).then((images)=>{
+                onFileSelected(images)
+
+            }).catch(error=>{
+                console.log(`error`, error)
+            })
+        }},
+        {name:"Choose from gallery",icon:<Icon name="image" color={colors.grey} size={41}></Icon>, onPress:()=>{
+            ImagePickerCropper.openPicker({
+                width:300,
+                height:300,
+                cropping:true,
+                freeStyleCropEnabled:true
+            }).then((images)=>{
+                onFileSelected(images)
+
+            }).catch(error=>{
+                console.log(`error`, error)
+            })
+
+        }},
     ]
     return (
         <RBSheet
@@ -21,6 +47,8 @@ const ImagePicker = React.forwardRef(({},ref) => {
           container: {
               borderTopRightRadius:20,
               borderTopLeftRadius:20,
+            //   justifyContent: "center",
+              alignItems: "center"
               
             
           }

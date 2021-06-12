@@ -18,6 +18,7 @@ const CreateContact=()=>{
     const sheetRef=useRef(null)
     const[form,setForm]=useState({})
     const {navigate} = useNavigation();
+    const[localFile,setLocalFile]=useState(null)
     const onChangeText=({name,value})=>{
         setForm({...form,[name]:value})
     }
@@ -41,8 +42,14 @@ const CreateContact=()=>{
     const toggleValueChange=()=>{
         setForm({...form,isFavorite: !form.isFavorite})
     }
+    const onFileSelected=(images)=>{
+        closeSheet()
+        console.log(`images`, images)
+        setLocalFile(images)
+
+    }
     return (
-        <CreateContactComponent onChangeText={onChangeText} toggleValueChange={toggleValueChange} form={form} onSubmit={onSubmit} setForm={setForm} loading={loading} error={error} sheetRef={sheetRef} closeSheet={closeSheet} openSheet={openSheet}></CreateContactComponent>
+        <CreateContactComponent onChangeText={onChangeText} toggleValueChange={toggleValueChange} form={form} onSubmit={onSubmit} setForm={setForm} loading={loading} error={error} sheetRef={sheetRef} closeSheet={closeSheet} openSheet={openSheet} onFileSelected={onFileSelected} localFile={localFile}></CreateContactComponent>
     )
 }
 
