@@ -1,7 +1,8 @@
 import React from 'react'
 import {useNavigation} from '@react-navigation/native';
-import { View, Text,FlatList, ActivityIndicator,Image } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+
+import { View, Text,FlatList, ActivityIndicator,Image,TouchableOpacity } from 'react-native'
+
 import colors from '../../assets/themes/colors'
 import AppModal from '../common/AppModal'
 import CustomButton from '../common/CustomButton'
@@ -9,7 +10,7 @@ import Message from '../common/message'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import Icon from '../common/Icon/index'
 import styles from '../ContactsComponent/styles'
-import CREATE_CONTACT from '../../constants/routeNames'
+import { CREATE_CONTACT } from '../../constants/routeNames';
 
 const ListEmptyComponent=()=>{
     return <View style={{padding:100}}>
@@ -39,26 +40,13 @@ const renderItem=({item})=>{
         </View>
         <Icon name="right" type="ant" size={17} color={colors.grey} style={styles.icon}></Icon>
         
-        {/* <TouchableOpacity
-        style={{backgroundColor:'red',width:55,
-       height:55,
-       //position:'absolute',
-       bottom:45,
-       right:10,
-       borderRadius:100,
-       justifyContent:'center',
-       alignItems:'center'}}
-         onPress={() => {
-           navigate(CREATE_CONTACT);
-         }}
-        >
-        <Icon name="plus" size={21} color={colors.grey} />
-      </TouchableOpacity> */}
+        
+        
     </TouchableOpacity>
 }
 
 const ContactsComponent = ({modalVisible,setModalVisible,data,loading}) => {
-    const{navigate}=useNavigation()
+    const {navigate} = useNavigation();
     return (
         <>
         <View style={{backgroundColor:colors.white}}>
@@ -88,6 +76,22 @@ const ContactsComponent = ({modalVisible,setModalVisible,data,loading}) => {
         >
         <Icon name="plus" size={21} color={colors.grey} />
       </TouchableOpacity> */}
+      <TouchableOpacity
+        style={{backgroundColor:'red',width:55,
+       height:55,
+       
+       bottom:55,
+       left:'80%',
+       borderRadius:100,
+       justifyContent:'center',
+       alignItems:'center'
+       }}
+         onPress={() => {
+            navigate(CREATE_CONTACT);
+         }}
+        >
+        <Icon name="plus" size={21} color={colors.white} />
+      </TouchableOpacity>
         
         </>
     )
