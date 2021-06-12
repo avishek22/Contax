@@ -22,7 +22,7 @@ const AppNavContainer = () => {
     try {
       const user = await AsyncStorage.getItem('user');
       console.log(`user data`,user )
-      if (user) {
+      if (user!==null) {
         setAuthLoaded(true);
 
         setIsAuthenticated(true);
@@ -38,7 +38,7 @@ const AppNavContainer = () => {
   useEffect(() => {
     getUser();
   }, [isLoggedIn]);
-
+  console.log(`is authenticated`, isAuthenticated)
   console.log(`is authloaded`, authLoaded)
   console.log('logged in',isLoggedIn)
 

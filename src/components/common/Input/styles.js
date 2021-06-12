@@ -19,6 +19,7 @@ export default StyleSheet.create({
   textInput: {
     flex: 1,
     width: '100%',
+    color:'black'
   },
 
   error: {
