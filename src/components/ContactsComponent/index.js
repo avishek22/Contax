@@ -11,6 +11,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import Icon from '../common/Icon/index'
 import styles from '../ContactsComponent/styles'
 import { CREATE_CONTACT } from '../../constants/routeNames';
+import Container from '../common/Container';
 
 const ListEmptyComponent=()=>{
     return <View style={{padding:100}}>
@@ -48,7 +49,7 @@ const renderItem=({item})=>{
 const ContactsComponent = ({modalVisible,setModalVisible,data,loading}) => {
     const {navigate} = useNavigation();
     return (
-        <>
+        <Container style={{padding:0}}>
         <View style={{backgroundColor:colors.white}}>
             <AppModal setModalVisible={setModalVisible} modalVisible={modalVisible}
             title="My Profile" modalBody={<View><Text>Hello from modal</Text></View>}></AppModal>
@@ -61,26 +62,11 @@ const ContactsComponent = ({modalVisible,setModalVisible,data,loading}) => {
             }></FlatList></View>)}
             
         </View>
-        {/* <TouchableOpacity
-        style={{backgroundColor:'red',width:55,
-       height:55,
-       position:'absolute',
-       bottom:45,
-       right:10,
-       borderRadius:100,
-       justifyContent:'center',
-       alignItems:'center'}}
-         onPress={() => {
-           navigate(CREATE_CONTACT);
-         }}
-        >
-        <Icon name="plus" size={21} color={colors.grey} />
-      </TouchableOpacity> */}
       <TouchableOpacity
         style={{backgroundColor:'red',width:55,
        height:55,
-       
-       bottom:55,
+       position:'absolute',
+       bottom:15,
        left:'80%',
        borderRadius:100,
        justifyContent:'center',
@@ -93,7 +79,9 @@ const ContactsComponent = ({modalVisible,setModalVisible,data,loading}) => {
         <Icon name="plus" size={21} color={colors.white} />
       </TouchableOpacity>
         
-        </>
+        
+        </Container>
+        
     )
 }
 
