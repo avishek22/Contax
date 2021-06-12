@@ -1,4 +1,4 @@
-package com.maincontact;
+package com.avishek.contacts;
 
 import com.facebook.react.ReactActivity;
 
