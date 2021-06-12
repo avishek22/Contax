@@ -62,6 +62,7 @@ const Login=()=>{
         onChangeText={(value)=>{
           onChange({name:'userName',value})
         }}
+        
         //error={"This field is required"}
       
       />
