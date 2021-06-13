@@ -1,14 +1,25 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import React from 'react'
 import {View,Text} from 'react-native'
+import { useEffect, useState } from 'react/cjs/react.development'
 import SettingsComponent from '../../components/SettingsComponent'
 const Settings=()=>{
+    
+    const [email,setEmail]=useState(null)
+
+    const getSettings= async()=>{
+
+        const user=await AsyncStorage.getItem('user')
+        setEmail(JSON.parse(user).email)
+    }
+
     const settingsOptions=[
         {title:"My Info",subTitle:"Setup your Profile",onPress:()=>{
 
         }},
         {title:"Accounts",subTitle:null,onPress:()=>{
 
-        }},{title:"Default account for new contacts",subTitle:"Hello@hello.om",onPress:()=>{
+        }},{title:"Default account for new contacts",subTitle:email,onPress:()=>{
 
         }},{title:"Contacts to display",subTitle:"All Contacts",onPress:()=>{
 
@@ -26,6 +37,9 @@ const Settings=()=>{
 
         }},
     ]
+    useEffect(()=>{
+        getSettings()
+    })
     return (
         <SettingsComponent settingsOptions={settingsOptions}></SettingsComponent>
         
