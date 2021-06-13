@@ -7,10 +7,21 @@ const Settings=()=>{
     
     const [email,setEmail]=useState(null)
 
+    const[modalVisible,setModalVisible]=useState(false)
+    const[sortBy,setSortBy]=useState(null)
+    
+    const saveSetting=(key,value)=>{
+        AsyncStorage.setItem(key,value)
+    }
+
     const getSettings= async()=>{
 
         const user=await AsyncStorage.getItem('user')
         setEmail(JSON.parse(user).email)
+
+        const sortPref=await AsyncStorage.getItem('sortBy')
+        if(sortPref)
+        setSortBy(sortPref)
     }
 
     const settingsOptions=[
@@ -23,7 +34,8 @@ const Settings=()=>{
 
         }},{title:"Contacts to display",subTitle:"All Contacts",onPress:()=>{
 
-        }},{title:"Sort by",subTitle:"First name",onPress:()=>{
+        }},{title:"Sort by",subTitle:sortBy,onPress:()=>{
+            setModalVisible(true)
 
         }},{title:"Name format",subTitle:"First name first",onPress:()=>{
 
@@ -37,11 +49,25 @@ const Settings=()=>{
 
         }},
     ]
+
+    const prefArr=[{name:"First Name",selected:sortBy==='First Name',onPress:()=>{
+        saveSetting('sortBy','First Name')
+        setSortBy("First Name")
+        setModalVisible(false)
+
+    }},
+    {name:"Last Name",selected:sortBy==="Last Name",onPress:()=>{
+        saveSetting('sortBy','Last Name')
+        setSortBy("Last Name")
+        setModalVisible(false)
+
+    }},
+    ]
     useEffect(()=>{
         getSettings()
     })
     return (
-        <SettingsComponent settingsOptions={settingsOptions}></SettingsComponent>
+        <SettingsComponent settingsOptions={settingsOptions} modalVisible={modalVisible} setModalVisible={setModalVisible} prefArr={prefArr}></SettingsComponent>
         
     )
 }
