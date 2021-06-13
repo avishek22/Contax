@@ -46,7 +46,7 @@ const renderItem=({item})=>{
     </TouchableOpacity>
 }
 
-const ContactsComponent = ({modalVisible,setModalVisible,data,loading}) => {
+const ContactsComponent = ({modalVisible,setModalVisible,data,loading,sortBy}) => {
     const {navigate} = useNavigation();
     return (
         <Container style={{padding:0}}>
@@ -57,7 +57,22 @@ const ContactsComponent = ({modalVisible,setModalVisible,data,loading}) => {
                 setModalVisible(true)
             }}></CustomButton> */}
             {loading && (<View style={{padding:100}}><ActivityIndicator size="large" color={colors.primary}></ActivityIndicator></View>)}
-            {!loading &&(<View style={{paddingVertical:20}}><FlatList renderItem={renderItem} keyExtractor={(item)=>String(item.id)} data={data} ListEmptyComponent={ListEmptyComponent} ListFooterComponent={
+            {!loading &&(<View style={{paddingVertical:20}}><FlatList renderItem={renderItem} keyExtractor={(item)=>String(item.id)} data={sortBy?data.sort((a,b)=>{
+                if(sortBy==="First Name"){
+                    if(b.first_name>a.first_name){
+                        return -1
+                    }
+                    else
+                    return 1
+                }
+                if(sortBy==="Last Name"){
+                    if(b.last_name>a.last_name){
+                        return -1
+                    }
+                    else
+                    return 1
+                }
+            }):data} ListEmptyComponent={ListEmptyComponent} ListFooterComponent={
                 <View style={{height:150}}></View>
             }></FlatList></View>)}
             
