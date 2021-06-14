@@ -43,11 +43,15 @@ const CreateContact=()=>{
                setUploading(false);
              });
            }
+           if(localFile===null){
+               console.log(`file is null`)
+            createContact(form)(contactsDispatch)(()=>{
+                console.log('here')
+                navigate(CONTACT_LIST)
+            })
+           }
         
-        createContact(form)(contactsDispatch)(()=>{
-            console.log('here')
-            navigate(CONTACT_LIST)
-        })
+       
     }
     const closeSheet=()=>{
         if(sheetRef.current){

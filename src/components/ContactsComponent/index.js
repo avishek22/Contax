@@ -21,7 +21,7 @@ const ListEmptyComponent=()=>{
 
 
 const renderItem=({item})=>{
-    console.log('item',item)
+    //console.log('item',item)
     const{contact_picture,first_name,last_name,phone_number,country_code}=item
     return <TouchableOpacity style={styles.itemContainer}>
         <View style={styles.item}>
