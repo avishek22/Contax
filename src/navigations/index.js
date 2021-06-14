@@ -9,6 +9,7 @@ import HomeNavigator from './HomeNavigator';
 import {GlobalContext} from '../context/Provider'
 import { useEffect } from 'react/cjs/react.development';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { navigationRef } from './SideMenu/RootNavigator';
 
 const AppNavContainer = () => {
   const {
@@ -47,7 +48,7 @@ const AppNavContainer = () => {
       
     <>
     {authLoaded ? (
-      <NavigationContainer >
+      <NavigationContainer ref={navigationRef}>
         {isAuthenticated ? <DrawerNavigator /> : <AuthNavigator />}
       </NavigationContainer>
     ) : (
