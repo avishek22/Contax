@@ -27,7 +27,7 @@ export default(form)=>(dispatch)=>onSuccess=>{
         })
         onSuccess()
     }).catch(err=>{
-        console.log('err')
+        console.log('err here')
         dispatch({
             type:CREATE_CONTACT_FAIL,
             payload: err.response
