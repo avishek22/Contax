@@ -3,14 +3,7 @@ import colors from '../../../assets/themes/colors';
 
 
 export default StyleSheet.create({
-  wrapper: {
-    height: 42,
-    borderWidth: 1,
-    borderRadius: 4,
-    paddingHorizontal: 5,
-    marginTop: 5,
-    alignItems:'center'
-  },
+  
 
   inputContainer: {
     paddingVertical: 12,
@@ -26,5 +19,13 @@ export default StyleSheet.create({
     color: colors.danger,
     paddingTop: 4,
     fontSize: 12,
+  },
+  wrapper: {
+    height: 42,
+    borderWidth: 1,
+    borderRadius: 4,
+    paddingHorizontal: 5,
+    marginTop: 5,
+    alignItems:'center'
   },
 });

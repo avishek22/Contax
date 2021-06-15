@@ -1,5 +1,5 @@
 import React,{useState,useContext} from 'react'
-import {View,Text,TextInput,Image, TouchableOpacity} from 'react-native'
+import {View,Text,TextInput,Image, TouchableOpacity,Alert} from 'react-native'
 import Container from '../../components/common/Container'
 import styles from './styles'
 import CustomButton from '../../components/common/CustomButton'
