@@ -68,6 +68,7 @@ const ContactDetailsComponent = ({
             <Text style={styles.middleText}>Video</Text>
           </TouchableOpacity>
         </View>
+        <View style={styles.hrLine}></View>
         <View style={styles.middleCallOptions}>
           <Icon
             type="ionicon"
