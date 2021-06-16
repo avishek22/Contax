@@ -10,8 +10,9 @@ import Message from '../common/message'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import Icon from '../common/Icon/index'
 import styles from '../ContactsComponent/styles'
-import { CREATE_CONTACT } from '../../constants/routeNames';
+import { CONTACT_DETAIL, CREATE_CONTACT } from '../../constants/routeNames';
 import Container from '../common/Container';
+import { navigate } from '../../navigations/SideMenu/RootNavigator';
 
 const ListEmptyComponent=()=>{
     return <View style={{padding:100}}>
@@ -23,7 +24,9 @@ const ListEmptyComponent=()=>{
 const renderItem=({item})=>{
     //console.log('item',item)
     const{contact_picture,first_name,last_name,phone_number,country_code}=item
-    return <TouchableOpacity style={styles.itemContainer}>
+    return <TouchableOpacity style={styles.itemContainer} onPress={()=>{
+        navigate(CONTACT_DETAIL,{item})
+    }}>
         <View style={styles.item}>
             {contact_picture?<Image style={{width:45,height:45,borderRadius:100}} source={{uri:contact_picture}}></Image>:
             <View style={{width:45,height:45,backgroundColor:colors.grey,flexDirection:'row',justifyContent:'center',alignItems:'center',borderRadius:100}}>
